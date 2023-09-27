@@ -1,0 +1,161 @@
+                                TYPESCRIPT CODING NOTES
+                                =======================
+
+Hello world in TYPESCRIPT
+--------------------------
+function log(msg) {
+    console.log(msg);
+}
+log("hello world");
+
+
+
+// Variable declaration
+------------------------
+var a = 10;
+var b = 5;
+console.log(a + b);
+
+
+
+To understand variable declaration
+----------------------------------
+function doSomething()
+{
+    for(var i=0;i<5;i++)
+    {
+        console.log(i);
+    }
+    console.log('finally',i);
+}
+
+doSomething();
+Diffrerence Declaration of Varible using (var) and (let) keyword
+    If u r declare a variable using var keyword those type of variables availability is all over the method,
+    but if u r declare a varible using let keyword its availability  only inside the scopes not outside of the scope
+    
+    Simply var keyword is prefarable more than let keyword why because all the websites are supports the var keyword only
+    so if u r declare any variable in let keyword ,the compiler throws an error and  convert those type of variables into the var keyword
+    so its better to go with var keyword
+
+
+DATATYPES IN TYPESCRIPT
+------------------------
+
+let a:number = 12;
+let b:string = "ajith";
+let c:boolean = true;
+let d:any = 23;
+let e:number[] = [1,2,3];
+let f:any[] = [1,'ak',false];
+
+const con:number=22;  //nothing but a constanant variable like final vriable in java
+
+
+//            0     1      2  (by deafult)
+enum color {Blue =23 ,Black =44 ,White=34}; //enum declaratin in TS
+// in enum the values of the fields are starts from 0 and its going in ascending order
+//if u want to change the value of the enum fields u can change as ur conviniens
+let bgColor = color.Black;
+
+console.log(bgColor);
+
+//enum declaratin in JS
+(function (color) {
+    color[color["Blue"] = 0] = "Blue";
+    color[color["Black"] = 1] = "Black";
+    color[color["White"] = 2] = "White";
+})(color || (color = {}));
+;
+
+
+
+Type Assertion in TypeScript
+----------------------------
+
+let color; 
+color = "black"; //here the type of the color variable is any
+let endsEithK = (color as string).endsWith('k'); //here we assertioning the TS to tke this as a string
+let AlternateEndsEithK = (<string> color).endsWith('k');
+//when u assign any data type after the declaration of the variable is called Type assertion
+
+
+
+ARROW FUNCTIONS
+-----------------
+Different type of function declaration uing arrow functions
+
+let log = function(msg){
+    console.log(msg);
+}
+     //or
+let doLog = (msg) =>{
+    console.log(msg);
+}
+     //or
+let doLog1 =(msg) => console.log("message");
+
+doLog1("hello"); //O.P=> hello
+
+
+
+//INTERFACE IN TS
+------------------
+
+interface point
+{
+    //now itself is a point object with the theree entities as mentioned below as well as java
+    x:number;
+    y:number;
+    z:number;
+}
+
+function doLog(point:point): void
+{
+    console.log(point.x);
+}
+
+doLog({x:1,y:2,z:3});
+
+
+
+//CLASS IN TS 
+class myClass
+{
+    //we dont want to specify as this is let or var if its in inside the class
+    // private x : number; //acess modifiers
+    // y : number;
+    // z : number;
+    
+    //constructor declaration in ts
+    constructor(private x?:number,public y?:number, public z?:number) //u can simplify ur code with this way too
+    //here the ? mark indicate this parameters are optional (its not mandotory to give as a parameter)
+    {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+    //we dont want to specify as this is let or var or function  if its in inside the class
+   private myFunction(){
+        console.log(this.x ,this.y,this.z);
+        
+    }
+    myFunctionTwo = () :any =>{
+        console.log("from myfunctiontwo");
+       this.myFunction();
+    }
+
+    //getter and setter in ts 
+    get get_x(){
+     return this.x;
+    }
+    set set_x(x){
+        this.x = x;
+    }
+}
+
+//OBJECT IN TS
+let a =new myClass(1 , 2 ,2);
+a.myFunctionTwo();
+a.set_x =5; //access method of getter and setter is little bit different from java
+console.log(a.get_x);
